@@ -10,6 +10,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MobileNavigationDrawerComponent } from './components/layout/mobile-navigation-drawer/mobile-navigation-drawer.component';
 import { MatListModule } from '@angular/material/list';
+import { ExpensesComponent } from './pages/expenses/expenses.component';
+import { IncomesComponent } from './pages/incomes/incomes.component';
+import { SignupComponent } from './pages/signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +21,9 @@ import { MatListModule } from '@angular/material/list';
     HomeComponent,
     LoginComponent,
     MobileNavigationDrawerComponent,
+    ExpensesComponent,
+    IncomesComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,18 +12,8 @@ export const navigationItems: NavigationItemInterface[] = [
     icon: 'remove',
   },
   {
-    label: 'Expense Groups',
-    url: '/expense-groups',
-    icon: 'IndeterminateCheckBox',
-  },
-  {
     label: 'Incomes',
     url: '/incomes',
     icon: 'Add',
-  },
-  {
-    label: 'Income Groups',
-    url: '/income-groups',
-    icon: 'AddBox',
   },
 ];

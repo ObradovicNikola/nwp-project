@@ -2,6 +2,9 @@
 @import "./app/styles/bulma-theme.sass"
 @import "./app/styles/custom-bulma.sass"
 
+*
+  box-sizing: border-box
+
 body
   min-height: 100vh
   overflow-x: hidden
@@ -19,9 +22,12 @@ body
 
     .app-main
       margin-top: 64px
-      padding-bottom: 48px
-      background-color: crimson
       flex-grow: 1
+      margin-left: auto
+      margin-right: auto
+      padding: 8px 16px
+      width: 1200px
+      max-width: 100%
       .data-table-container
         height: 400px
 
