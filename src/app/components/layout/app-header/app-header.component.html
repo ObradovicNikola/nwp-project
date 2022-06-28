@@ -1,0 +1,60 @@
+<!-- <p>app-header works!</p>
+<nav>
+  <a routerLink="/" routerLinkActive="active">Home</a>
+  <a routerLink="/login" routerLinkActive="active">Login</a>
+</nav> -->
+
+<nav
+  class="navbar app-header has-background-black-ter has-text-white"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-brand is-align-items-center">
+    <a class="navbar-item is-size-4" routerLink="/"> Expense Tracker </a>
+
+    <button
+      class="navbar-burger has-text-white"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+      (click)="toggleHamburgerMenu(true)"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a
+        *ngFor="let item of navigationItems"
+        class="navbar-item"
+        [routerLink]="item.url"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        {{ item.label }}
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a
+            *ngFor="let item of accountNavigationItems"
+            [class]="item.className || ''"
+            [routerLink]="item.url"
+          >
+            {{ item.label }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <MobileNavigationDrawer
+  hamburgerMenuIsOpen={hamburgerMenuIsOpen}
+  toggleHamburgerMenu={toggleHamburgerMenu}
+/> -->
+</nav>

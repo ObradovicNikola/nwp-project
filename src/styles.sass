@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./app/styles/bulma-theme.sass"
+@import "./app/styles/custom-bulma.sass"
+
+body
+  min-height: 100vh
+  overflow-x: hidden
+  overflow-y: scroll
+  background-color: #dbdbdb !important
+
+  #root
+    display: flex
+    flex-direction: column
+    flex-grow: 1
+    min-height: 100vh
+
+    // #app-outlet
+      // display: none
+
+    .app-main
+      margin-top: 64px
+      padding-bottom: 48px
+      background-color: crimson
+      flex-grow: 1
+      .data-table-container
+        height: 400px
+
+      .MuiAlert-message
+        .MuiList-root, .MuiListSubheader-root
+          background-color: transparent
