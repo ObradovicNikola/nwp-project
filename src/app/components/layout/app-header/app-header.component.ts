@@ -9,15 +9,20 @@ import { NavigationItemInterface } from 'src/models/layout/NavigationItemInterfa
   styleUrls: ['./app-header.component.sass'],
 })
 export class AppHeaderComponent implements OnInit {
-  hamburgerMenuIsOpen: boolean = false;
   navigationItems: NavigationItemInterface[] = navigationItems;
   accountNavigationItems: NavigationItemInterface[] = accountNavigationItems;
+
+  isDrawerOpen: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   toggleHamburgerMenu(newState: boolean): void {
-    this.hamburgerMenuIsOpen = newState;
+    this.isDrawerOpen = newState;
   }
+
+  closeDrawer: () => void = () => {
+    this.toggleHamburgerMenu(false);
+  };
 }

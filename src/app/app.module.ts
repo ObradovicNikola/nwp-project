@@ -8,10 +8,23 @@ import { AppHeaderComponent } from './components/layout/app-header/app-header.co
 import { AppFooterComponent } from './components/layout/app-footer/app-footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-
+import { MobileNavigationDrawerComponent } from './components/layout/mobile-navigation-drawer/mobile-navigation-drawer.component';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
-  declarations: [AppComponent, AppHeaderComponent, AppFooterComponent, HomeComponent, LoginComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  declarations: [
+    AppComponent,
+    AppHeaderComponent,
+    AppFooterComponent,
+    HomeComponent,
+    LoginComponent,
+    MobileNavigationDrawerComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatListModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
