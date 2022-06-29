@@ -42,6 +42,8 @@ export class IncomesComponent implements OnInit {
   }
 
   handleDeleteAction(income: TransactionResponseInterface): void {
-    console.log('Delete income: ', income);
+    this.incomesService.deleteIncome(income.id).subscribe(() => {
+      this.getIncomes();
+    });
   }
 }

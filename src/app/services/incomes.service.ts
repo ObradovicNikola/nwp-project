@@ -13,4 +13,9 @@ export class IncomesService {
   getIncomes(): Observable<TransactionResponseInterface[]> {
     return this.http.get<TransactionResponseInterface[]>(this.incomesUrl);
   }
+
+  deleteIncome(id: number): Observable<TransactionResponseInterface> {
+    const url = `${this.incomesUrl}/${id}`;
+    return this.http.delete<TransactionResponseInterface>(url);
+  }
 }
