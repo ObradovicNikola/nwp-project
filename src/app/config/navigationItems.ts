@@ -1,4 +1,4 @@
-import { NavigationItemInterface } from 'src/models/layout/NavigationItemInterface';
+import { NavigationItemInterface } from 'src/app/models/layout/NavigationItemInterface';
 
 export const navigationItems: NavigationItemInterface[] = [
   {

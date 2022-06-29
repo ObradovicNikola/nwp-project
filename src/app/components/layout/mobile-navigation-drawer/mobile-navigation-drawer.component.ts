@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { accountNavigationItems } from 'src/app/config/accountNavigationItems';
 import { navigationItems } from 'src/app/config/navigationItems';
-import { NavigationItemInterface } from 'src/models/layout/NavigationItemInterface';
+import { NavigationItemInterface } from 'src/app/models/layout/NavigationItemInterface';
 
 @Component({
   selector: 'app-mobile-navigation-drawer',
