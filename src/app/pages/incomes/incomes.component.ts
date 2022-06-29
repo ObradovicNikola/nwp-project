@@ -19,6 +19,8 @@ export class IncomesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  isDialogOpen: boolean = false;
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -46,4 +48,20 @@ export class IncomesComponent implements OnInit {
       this.getIncomes();
     });
   }
+
+  // DIALOGS
+  openDialog: () => void = () => {
+    console.log('Open dialog');
+    this.isDialogOpen = true;
+  };
+
+  closeDialog: () => void = () => {
+    console.log('Close dialog');
+    this.isDialogOpen = false;
+  };
+
+  submitDialog: () => void = () => {
+    console.log('Submit dialog');
+    this.closeDialog();
+  };
 }

@@ -6,6 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { ExpensesComponent } from './pages/expenses/expenses.component';
 import { IncomesComponent } from './pages/incomes/incomes.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
+import { DialogComponent } from './components/common/dialog/dialog.component';
+import { TransactionFormComponent } from './components/common/transaction-form/transaction-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +33,8 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
     ExpensesComponent,
     IncomesComponent,
     SignupComponent,
+    DialogComponent,
+    TransactionFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,7 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
+    MatDialogModule,
   ],
   providers: [
     {

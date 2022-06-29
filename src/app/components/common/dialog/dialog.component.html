@@ -1,0 +1,16 @@
+<div class="modal is-active" (click)="handleDialogClose()">
+  <div class="modal-background"></div>
+  <div class="modal-content" (click)="stopPropagation($event)">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">{{ title }}</p>
+      </header>
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <button
+    (click)="handleDialogClose()"
+    class="modal-close is-large"
+    aria-label="close"
+  ></button>
+</div>
