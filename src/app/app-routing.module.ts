@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ExpenseDetailsComponent } from './components/expenses/expense-details/expense-details.component';
+import { IncomeDetailsComponent } from './components/incomes/income-details/income-details.component';
 import { ExpensesComponent } from './pages/expenses/expenses.component';
 import { HomeComponent } from './pages/home/home.component';
 import { IncomesComponent } from './pages/incomes/incomes.component';
@@ -11,7 +13,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'expenses', component: ExpensesComponent },
+  { path: 'expenses/:id', component: ExpenseDetailsComponent },
   { path: 'incomes', component: IncomesComponent },
+  { path: 'incomes/:id', component: IncomeDetailsComponent },
   { path: '**', redirectTo: '/' },
 ];
 

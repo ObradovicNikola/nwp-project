@@ -24,6 +24,8 @@ import { DialogComponent } from './components/common/dialog/dialog.component';
 import { TransactionFormComponent } from './components/common/transaction-form/transaction-form.component';
 import { NoWhiteSpaceDirective } from './config/form-validators/whitespace.validator';
 import { ValidAmountDirective } from './config/form-validators/amount.validator';
+import { IncomeDetailsComponent } from './components/incomes/income-details/income-details.component';
+import { ExpenseDetailsComponent } from './components/expenses/expense-details/expense-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,8 @@ import { ValidAmountDirective } from './config/form-validators/amount.validator'
     TransactionFormComponent,
     NoWhiteSpaceDirective,
     ValidAmountDirective,
+    IncomeDetailsComponent,
+    ExpenseDetailsComponent,
   ],
   imports: [
     BrowserModule,

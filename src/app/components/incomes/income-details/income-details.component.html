@@ -1,0 +1,27 @@
+<div class="details-page">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">Income</p>
+      <button class="card-header-icon" aria-label="more options">
+        <span class="icon">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <div *ngIf="income">
+          <p>
+            {{ income.description }}
+          </p>
+          <p>
+            {{ income.amount | currency }}
+          </p>
+        </div>
+        <div *ngIf="!income">
+          <p>Can't find this income!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
