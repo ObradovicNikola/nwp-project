@@ -30,7 +30,10 @@
             </a>
           </div>
           <div class="level-item mx-2">
-            <a class="button is-success" [routerLink]="'/incomes/' + row.id">
+            <a
+              class="button is-success"
+              [routerLink]="'/' + transactionType + '/' + row.id"
+            >
               <mat-icon aria-hidden="false" aria-label="Example home icon"
                 >arrow_forward</mat-icon
               >

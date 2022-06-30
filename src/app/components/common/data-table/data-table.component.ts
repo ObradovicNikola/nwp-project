@@ -14,6 +14,7 @@ export class DataTableComponent implements OnInit {
   @Input() dataSource!: MatTableDataSource<TransactionResponseInterface>;
   @Input() handleEditAction!: (income: TransactionResponseInterface) => void;
   @Input() handleDeleteAction!: (income: TransactionResponseInterface) => void;
+  @Input() transactionType: 'expenses' | 'incomes' = 'expenses';
 
   displayedColumns: string[] = ['id', 'description', 'amount', 'actions'];
 

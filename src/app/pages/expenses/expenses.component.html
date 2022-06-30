@@ -1,1 +1,50 @@
-<p>expenses works!</p>
+<div class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h1 class="title">Expenses</h1>
+    </div>
+  </div>
+  <div class="level-right">
+    <div class="level-item">
+      <button class="button is-primary" (click)="openDialog()">
+        <span class="icon">
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >add</mat-icon
+          >
+        </span>
+        <span>New expense</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-data-table
+  [dataSource]="dataSource"
+  [handleEditAction]="handleEditAction"
+  [handleDeleteAction]="handleDeleteAction"
+></app-data-table>
+
+<!-- DIALOGS -->
+
+<app-dialog
+  *ngIf="isDialogOpen"
+  title="New Expense"
+  [handleDialogClose]="closeDialog"
+>
+  <app-transaction-form
+    [handleDialogClose]="closeDialog"
+    [handleDialogSubmit]="submitDialog"
+  ></app-transaction-form>
+</app-dialog>
+
+<app-dialog
+  *ngIf="isEditDialogOpen"
+  [title]="'Edit Expense id = ' + editedExpenseData.id"
+  [handleDialogClose]="closeEditDialog"
+>
+  <app-transaction-form
+    [handleDialogClose]="closeEditDialog"
+    [handleDialogSubmit]="submitEditDialog"
+    [initialData]="editedExpenseData"
+  ></app-transaction-form>
+</app-dialog>

@@ -44,7 +44,7 @@ export class ExpensesService {
     );
   }
 
-  deleteIncome(id: number): Observable<TransactionResponseInterface> {
+  deleteExpense(id: number): Observable<TransactionResponseInterface> {
     const url = `${this.expensesUrl}/${id}`;
     return this.http.delete<TransactionResponseInterface>(url);
   }
