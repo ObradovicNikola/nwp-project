@@ -1,1 +1,15 @@
-<p>home works!</p>
+<h1>Total ammount</h1>
+
+<div class="content">
+  <div *ngIf="totalAmount">
+    <p>total: {{ totalAmount.totalAmount | currency }}</p>
+
+    <app-total-pie-chart
+      [totalExpenses]="totalAmount.totalExpenses"
+      [totalIncomes]="totalAmount.totalIncomes"
+    ></app-total-pie-chart>
+  </div>
+  <div *ngIf="!totalAmount">
+    <span>Loading...</span>
+  </div>
+</div>

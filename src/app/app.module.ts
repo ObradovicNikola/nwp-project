@@ -27,6 +27,8 @@ import { ValidAmountDirective } from './config/form-validators/amount.validator'
 import { IncomeDetailsComponent } from './components/incomes/income-details/income-details.component';
 import { ExpenseDetailsComponent } from './components/expenses/expense-details/expense-details.component';
 import { DataTableComponent } from './components/common/data-table/data-table.component';
+import { TotalPieChartComponent } from './components/common/total-pie-chart/total-pie-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,7 @@ import { DataTableComponent } from './components/common/data-table/data-table.co
     IncomeDetailsComponent,
     ExpenseDetailsComponent,
     DataTableComponent,
+    TotalPieChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { DataTableComponent } from './components/common/data-table/data-table.co
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
+    NgApexchartsModule,
   ],
   providers: [
     {
