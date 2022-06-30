@@ -26,6 +26,7 @@ import { NoWhiteSpaceDirective } from './config/form-validators/whitespace.valid
 import { ValidAmountDirective } from './config/form-validators/amount.validator';
 import { IncomeDetailsComponent } from './components/incomes/income-details/income-details.component';
 import { ExpenseDetailsComponent } from './components/expenses/expense-details/expense-details.component';
+import { DataTableComponent } from './components/common/data-table/data-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { ExpenseDetailsComponent } from './components/expenses/expense-details/e
     ValidAmountDirective,
     IncomeDetailsComponent,
     ExpenseDetailsComponent,
+    DataTableComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TransactionResponseInterface } from 'src/app/models/entities/TransactionResponseInterface';
 import { IncomesService } from 'src/app/services/incomes.service';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort } from '@angular/material/sort';
 import { TransactionRequestInterface } from 'src/app/models/entities/TransactionRequestInterface';
 
 @Component({
@@ -13,27 +11,19 @@ import { TransactionRequestInterface } from 'src/app/models/entities/Transaction
 })
 export class IncomesComponent implements OnInit {
   incomes: TransactionResponseInterface[] = [];
-  displayedColumns: string[] = ['id', 'description', 'amount', 'actions'];
   dataSource = new MatTableDataSource<TransactionResponseInterface>(
     this.incomes
   );
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
   isDialogOpen: boolean = false;
 
   isEditDialogOpen: boolean = false;
-  // editedIncomeId: number = -1;
   editedIncomeData: TransactionResponseInterface = {
     id: -1,
     description: '',
     amount: 0,
   };
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
   constructor(private incomesService: IncomesService) {}
 
   ngOnInit(): void {
@@ -47,17 +37,21 @@ export class IncomesComponent implements OnInit {
     });
   }
 
-  handleEditAction(income: TransactionResponseInterface): void {
+  handleEditAction: (income: TransactionResponseInterface) => void = (
+    income: TransactionResponseInterface
+  ) => {
     console.log('Edit income: ', income);
     this.editedIncomeData = income;
     this.openEditDialog();
-  }
+  };
 
-  handleDeleteAction(income: TransactionResponseInterface): void {
+  handleDeleteAction: (income: TransactionResponseInterface) => void = (
+    income: TransactionResponseInterface
+  ) => {
     this.incomesService.deleteIncome(income.id).subscribe(() => {
       this.getIncomes();
     });
-  }
+  };
 
   // DIALOGS
 
