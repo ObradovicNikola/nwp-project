@@ -40,7 +40,6 @@ export class IncomesComponent implements OnInit {
   handleEditAction: (income: TransactionResponseInterface) => void = (
     income: TransactionResponseInterface
   ) => {
-    console.log('Edit income: ', income);
     this.editedIncomeData = income;
     this.openEditDialog();
   };
@@ -74,7 +73,7 @@ export class IncomesComponent implements OnInit {
         this.closeDialog();
       },
       error: (error) => {
-        console.log(error);
+        // TODO: snackbar to show error
       },
     });
   };
@@ -99,7 +98,7 @@ export class IncomesComponent implements OnInit {
           this.closeEditDialog();
         },
         error: (error) => {
-          console.log(error);
+          // TODO: snackbar to show error
         },
       });
   };

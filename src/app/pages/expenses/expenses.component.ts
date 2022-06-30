@@ -40,7 +40,6 @@ export class ExpensesComponent implements OnInit {
   handleEditAction: (expense: TransactionResponseInterface) => void = (
     expense: TransactionResponseInterface
   ) => {
-    console.log('Edit expense: ', expense);
     this.editedExpenseData = expense;
     this.openEditDialog();
   };
@@ -74,7 +73,7 @@ export class ExpensesComponent implements OnInit {
         this.closeDialog();
       },
       error: (error) => {
-        console.log(error);
+        // TODO: snackbar to show error
       },
     });
   };
@@ -99,7 +98,7 @@ export class ExpensesComponent implements OnInit {
           this.closeEditDialog();
         },
         error: (error) => {
-          console.log(error);
+          // TODO: snackbar to show error
         },
       });
   };

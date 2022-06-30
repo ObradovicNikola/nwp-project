@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   getTotalAmmount() {
     this.totalAmountService.getTotalAmmount().subscribe((totalAmount) => {
       this.totalAmount = totalAmount;
-      console.log(this.totalAmount);
     });
   }
 }
