@@ -4,6 +4,7 @@ import { IncomesService } from 'src/app/services/incomes.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
+import { TransactionRequestInterface } from 'src/app/models/entities/TransactionRequestInterface';
 
 @Component({
   selector: 'app-incomes',
@@ -19,7 +20,8 @@ export class IncomesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  isDialogOpen: boolean = false;
+  // isDialogOpen: boolean = false;
+  isDialogOpen: boolean = true;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -34,7 +36,6 @@ export class IncomesComponent implements OnInit {
   getIncomes(): void {
     this.incomesService.getIncomes().subscribe((incomes) => {
       this.incomes = incomes;
-      console.log(this.incomes);
       this.dataSource.data = this.incomes;
     });
   }
@@ -51,17 +52,24 @@ export class IncomesComponent implements OnInit {
 
   // DIALOGS
   openDialog: () => void = () => {
-    console.log('Open dialog');
     this.isDialogOpen = true;
   };
 
   closeDialog: () => void = () => {
-    console.log('Close dialog');
     this.isDialogOpen = false;
   };
 
-  submitDialog: () => void = () => {
-    console.log('Submit dialog');
-    this.closeDialog();
+  submitDialog: (transaction: TransactionRequestInterface) => void = (
+    transaction
+  ) => {
+    this.incomesService.createIncome(transaction).subscribe({
+      next: () => {
+        this.getIncomes();
+        this.closeDialog();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   };
 }

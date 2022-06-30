@@ -1,9 +1,72 @@
 <div class="card-content">
   <div class="content">
-    Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id
-    elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et
-    magnis dis parturient montes, nascetur ridiculus mus. Cras mattis
-    consectetur purus sit amet fermentum.
+    <form action="" #heroForm="ngForm">
+      <div class="field">
+        <label class="label" for="description">Description</label>
+        <div class="control">
+          <input
+            class="input"
+            #descriptionNgModel="ngModel"
+            required
+            noWhiteSpaceValidator
+            [class.is-danger]="
+              (descriptionNgModel.touched || descriptionNgModel.dirty) &&
+              !descriptionNgModel.valid
+            "
+            type="text"
+            placeholder="Description"
+            [(ngModel)]="model.description"
+            name="description"
+          />
+        </div>
+        <p
+          *ngIf="!descriptionNgModel.pristine && !descriptionNgModel.valid"
+          class="help is-danger"
+        >
+          This field is required
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="amount">Amount</label>
+        <div class="control">
+          <!-- noWhiteSpaceValidator -->
+          <input
+            class="input"
+            type="text"
+            required
+            numberWith2DecimalsValidator
+            #amountNgModel="ngModel"
+            [class.is-danger]="
+              (amountNgModel.touched || amountNgModel.dirty) &&
+              !amountNgModel.valid
+            "
+            placeholder="Amount"
+            [(ngModel)]="model.amount"
+            name="amount"
+          />
+        </div>
+        <p
+          *ngIf="!amountNgModel.pristine && !amountNgModel.valid"
+          class="help is-danger"
+        >
+          <span
+            *ngIf="
+              amountNgModel.errors &&
+              amountNgModel.errors['numberWith2Decimals']
+            "
+          >
+            Amount must be a number with max 2 decimals
+          </span>
+
+          <span
+            *ngIf="amountNgModel.errors && amountNgModel.errors['required']"
+          >
+            This field is required
+          </span>
+        </p>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -13,7 +76,11 @@
   <button class="button is-danger mr-3" (click)="handleDialogClose()">
     Cancel
   </button>
-  <button class="button is-primary mr-3" (click)="handleDialogSubmit()">
+  <button
+    class="button is-primary mr-3"
+    (click)="prepareAndSubmit(model)"
+    [disabled]="!heroForm.form.valid"
+  >
     Submit
   </button>
 </footer>

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,8 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { DialogComponent } from './components/common/dialog/dialog.component';
 import { TransactionFormComponent } from './components/common/transaction-form/transaction-form.component';
+import { NoWhiteSpaceDirective } from './config/form-validators/whitespace.validator';
+import { ValidAmountDirective } from './config/form-validators/amount.validator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +37,12 @@ import { TransactionFormComponent } from './components/common/transaction-form/t
     SignupComponent,
     DialogComponent,
     TransactionFormComponent,
+    NoWhiteSpaceDirective,
+    ValidAmountDirective,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -46,7 +51,6 @@ import { TransactionFormComponent } from './components/common/transaction-form/t
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatDialogModule,
   ],
   providers: [
     {
