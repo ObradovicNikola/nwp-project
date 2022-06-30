@@ -20,8 +20,15 @@ export class IncomesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  // isDialogOpen: boolean = false;
-  isDialogOpen: boolean = true;
+  isDialogOpen: boolean = false;
+
+  isEditDialogOpen: boolean = false;
+  // editedIncomeId: number = -1;
+  editedIncomeData: TransactionResponseInterface = {
+    id: -1,
+    description: '',
+    amount: 0,
+  };
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -42,6 +49,8 @@ export class IncomesComponent implements OnInit {
 
   handleEditAction(income: TransactionResponseInterface): void {
     console.log('Edit income: ', income);
+    this.editedIncomeData = income;
+    this.openEditDialog();
   }
 
   handleDeleteAction(income: TransactionResponseInterface): void {
@@ -51,11 +60,14 @@ export class IncomesComponent implements OnInit {
   }
 
   // DIALOGS
+
+  // dialog to add new entity
   openDialog: () => void = () => {
     this.isDialogOpen = true;
   };
 
   closeDialog: () => void = () => {
+    this.editedIncomeData.id = -1;
     this.isDialogOpen = false;
   };
 
@@ -71,5 +83,30 @@ export class IncomesComponent implements OnInit {
         console.log(error);
       },
     });
+  };
+
+  // dialog to edit an entity with id = this.editedIncomeId
+  openEditDialog: () => void = () => {
+    this.isEditDialogOpen = true;
+  };
+
+  closeEditDialog: () => void = () => {
+    this.isEditDialogOpen = false;
+  };
+
+  submitEditDialog: (transaction: TransactionRequestInterface) => void = (
+    transaction
+  ) => {
+    this.incomesService
+      .updateIncome(this.editedIncomeData.id, transaction)
+      .subscribe({
+        next: () => {
+          this.getIncomes();
+          this.closeEditDialog();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   };
 }

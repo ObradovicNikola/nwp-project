@@ -8,7 +8,9 @@
     <div class="level-item">
       <button class="button is-primary" (click)="openDialog()">
         <span class="icon">
-          <i class="fa fa-plus"></i>
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >add</mat-icon
+          >
         </span>
         <span>New income</span>
       </button>
@@ -87,5 +89,17 @@
   <app-transaction-form
     [handleDialogClose]="closeDialog"
     [handleDialogSubmit]="submitDialog"
+  ></app-transaction-form>
+</app-dialog>
+
+<app-dialog
+  *ngIf="isEditDialogOpen"
+  [title]="'Edit Income id = ' + editedIncomeData.id"
+  [handleDialogClose]="closeEditDialog"
+>
+  <app-transaction-form
+    [handleDialogClose]="closeEditDialog"
+    [handleDialogSubmit]="submitEditDialog"
+    [initialData]="editedIncomeData"
   ></app-transaction-form>
 </app-dialog>

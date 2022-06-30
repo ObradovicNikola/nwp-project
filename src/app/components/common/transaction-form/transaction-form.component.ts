@@ -10,6 +10,9 @@ export class TransactionFormComponent implements OnInit {
   @Input() handleDialogClose!: () => void;
   @Input() handleDialogSubmit!: (model: TransactionRequestInterface) => void;
 
+  // optional input for initial data
+  @Input() initialData?: TransactionRequestInterface;
+
   model: TransactionRequestInterface = {
     description: '',
     amount: 0,
@@ -17,10 +20,14 @@ export class TransactionFormComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.initialData) {
+      this.model = { ...this.initialData };
+    }
+  }
 
-  prepareAndSubmit(transaction: TransactionRequestInterface): void {
-    transaction.description = transaction.description?.trim();
-    this.handleDialogSubmit(transaction);
+  prepareAndSubmit(): void {
+    this.model.description = this.model.description.trim();
+    this.handleDialogSubmit(this.model);
   }
 }

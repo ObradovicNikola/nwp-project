@@ -1,6 +1,6 @@
 <div class="card-content">
   <div class="content">
-    <form action="" #heroForm="ngForm">
+    <form (ngSubmit)="prepareAndSubmit()" #heroForm="ngForm">
       <div class="field">
         <label class="label" for="description">Description</label>
         <div class="control">
@@ -78,7 +78,7 @@
   </button>
   <button
     class="button is-primary mr-3"
-    (click)="prepareAndSubmit(model)"
+    (click)="prepareAndSubmit()"
     [disabled]="!heroForm.form.valid"
   >
     Submit
