@@ -29,6 +29,9 @@ import { ExpenseDetailsComponent } from './components/expenses/expense-details/e
 import { DataTableComponent } from './components/common/data-table/data-table.component';
 import { TotalPieChartComponent } from './components/common/total-pie-chart/total-pie-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { LoginFormComponent } from './components/common/login-form/login-form.component';
+import { RegisterFormComponent } from './components/common/register-form/register-form.component';
+import { PasswordValidatorDirective } from './config/form-validators/password.validator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,10 +47,13 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     TransactionFormComponent,
     NoWhiteSpaceDirective,
     ValidAmountDirective,
+    PasswordValidatorDirective,
     IncomeDetailsComponent,
     ExpenseDetailsComponent,
     DataTableComponent,
     TotalPieChartComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,

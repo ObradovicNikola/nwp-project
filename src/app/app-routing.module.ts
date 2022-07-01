@@ -7,15 +7,37 @@ import { HomeComponent } from './pages/home/home.component';
 import { IncomesComponent } from './pages/incomes/incomes.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { AuthGardService } from './services/auth-gard.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  {
+    path: '',
+    component: HomeComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGardService],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'expenses', component: ExpensesComponent },
-  { path: 'expenses/:id', component: ExpenseDetailsComponent },
-  { path: 'incomes', component: IncomesComponent },
-  { path: 'incomes/:id', component: IncomeDetailsComponent },
+  {
+    path: 'expenses',
+    component: ExpensesComponent,
+    canActivate: [AuthGardService],
+  },
+  {
+    path: 'expenses/:id',
+    component: ExpenseDetailsComponent,
+    canActivate: [AuthGardService],
+  },
+  {
+    path: 'incomes',
+    component: IncomesComponent,
+    canActivate: [AuthGardService],
+  },
+  {
+    path: 'incomes/:id',
+    component: IncomeDetailsComponent,
+    canActivate: [AuthGardService],
+  },
   { path: '**', redirectTo: '/' },
 ];
 
