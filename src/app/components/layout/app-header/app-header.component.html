@@ -1,9 +1,3 @@
-<!-- <p>app-header works!</p>
-<nav>
-  <a routerLink="/" routerLinkActive="active">Home</a>
-  <a routerLink="/login" routerLinkActive="active">Login</a>
-</nav> -->
-
 <nav
   class="navbar app-header has-background-black-ter has-text-white"
   role="navigation"
@@ -40,7 +34,7 @@
 
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons">
+        <div *ngIf="!isLoggedIn" class="buttons">
           <a
             *ngFor="let item of accountNavigationItems"
             [class]="item.className || ''"
@@ -49,14 +43,14 @@
             {{ item.label }}
           </a>
         </div>
+        <div *ngIf="isLoggedIn" class="buttons">
+          <span class="has-text-white mr-3"> Hello, {{ username }} </span>
+          <button class="button is-danger" (click)="logout()">Logout</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- <MobileNavigationDrawer
-  hamburgerMenuIsOpen={hamburgerMenuIsOpen}
-  toggleHamburgerMenu={toggleHamburgerMenu}
-/> -->
   <app-mobile-navigation-drawer
     [isOpen]="isDrawerOpen"
     [closeDrawer]="closeDrawer"

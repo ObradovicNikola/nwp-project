@@ -1,1 +1,115 @@
-<p>register-form works!</p>
+<div class="card">
+  <div class="card-content">
+    <div class="content">
+      <form (ngSubmit)="prepareAndSubmit()" #heroForm="ngForm">
+        <div class="field">
+          <label class="label" for="name">Name</label>
+          <div class="control">
+            <input
+              class="input"
+              #nameNgModel="ngModel"
+              required
+              noWhiteSpaceValidator
+              [class.is-danger]="
+                (nameNgModel.touched || nameNgModel.dirty) && !nameNgModel.valid
+              "
+              type="text"
+              placeholder="Name"
+              [(ngModel)]="model.name"
+              name="name"
+            />
+          </div>
+          <p
+            *ngIf="!nameNgModel.pristine && !nameNgModel.valid"
+            class="help is-danger"
+          >
+            This field is required
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="email">Email</label>
+          <div class="control">
+            <input
+              class="input"
+              #emailNgModel="ngModel"
+              required
+              email
+              noWhiteSpaceValidator
+              [class.is-danger]="
+                (emailNgModel.touched || emailNgModel.dirty) &&
+                !emailNgModel.valid
+              "
+              type="email"
+              placeholder="Email"
+              [(ngModel)]="model.email"
+              name="email"
+            />
+          </div>
+          <p
+            *ngIf="!emailNgModel.pristine && !emailNgModel.valid"
+            class="help is-danger"
+          >
+            This field is required and must be valid email
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="password">Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              required
+              noWhiteSpaceValidator
+              validPassword
+              #passwordNgModel="ngModel"
+              [class.is-danger]="
+                (passwordNgModel.touched || passwordNgModel.dirty) &&
+                !passwordNgModel.valid
+              "
+              placeholder="Password"
+              [(ngModel)]="model.password"
+              name="password"
+            />
+          </div>
+          <p
+            *ngIf="!passwordNgModel.pristine && !passwordNgModel.valid"
+            class="help is-danger"
+          >
+            <span
+              *ngIf="
+                passwordNgModel.errors &&
+                passwordNgModel.errors['validPassword']
+              "
+            >
+              Password must be at least 8 characters long and can't contain
+              whitespaces
+            </span>
+
+            <span
+              *ngIf="
+                passwordNgModel.errors && passwordNgModel.errors['required']
+              "
+            >
+              This field is required
+            </span>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer
+    class="card-footer is-flex is-align-items-center is-justify-content-right py-2"
+  >
+    <button
+      type="submit"
+      class="button is-primary mr-3"
+      (click)="prepareAndSubmit()"
+      [disabled]="!heroForm.form.valid"
+    >
+      Submit
+    </button>
+  </footer>
+</div>
