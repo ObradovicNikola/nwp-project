@@ -35,6 +35,23 @@ export class UserService {
     this.usernameChange.subscribe((username) => {
       this.username = username;
     });
+
+    if (localStorage.getItem('token')) {
+      this.setLoggedIn(true);
+      this.me().subscribe({
+        next: (user) => {
+          if (user.name) {
+            this.usernameChange.next(user.name);
+          } else {
+            this.logout();
+            throw new Error("Oops, can't find the user");
+          }
+        },
+        error: (error) => {
+          throw error;
+        },
+      });
+    }
   }
 
   private setLoggedIn(isLoggedIn: boolean) {
