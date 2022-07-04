@@ -16,14 +16,8 @@ export class SignupComponent implements OnInit {
   onLoginSubmit: (userRegister: UserRegisterInterface) => void = (
     userRegister: UserRegisterInterface
   ) => {
-    this.userService.register(userRegister).subscribe({
-      next: () => {
-        this.router.navigate(['/login']);
-      },
-      error: (error) => {
-        console.log('Error...');
-        console.log(error);
-      },
-    });
+    try {
+      this.userService.register(userRegister);
+    } catch (error) {}
   };
 }

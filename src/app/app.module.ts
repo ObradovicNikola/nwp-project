@@ -7,6 +7,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
+import {
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +36,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { LoginFormComponent } from './components/common/login-form/login-form.component';
 import { RegisterFormComponent } from './components/common/register-form/register-form.component';
 import { PasswordValidatorDirective } from './config/form-validators/password.validator';
+import { MySnackbarComponent } from './components/common/my-snackbar/my-snackbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +59,7 @@ import { PasswordValidatorDirective } from './config/form-validators/password.va
     TotalPieChartComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    MySnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +72,7 @@ import { PasswordValidatorDirective } from './config/form-validators/password.va
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
+    MatSnackBarModule,
     NgApexchartsModule,
   ],
   providers: [
@@ -74,6 +81,7 @@ import { PasswordValidatorDirective } from './config/form-validators/password.va
       useClass: JwtInterceptorService,
       multi: true,
     },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
   ],
   bootstrap: [AppComponent],
 })

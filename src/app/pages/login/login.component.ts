@@ -18,8 +18,6 @@ export class LoginComponent implements OnInit {
   ) => {
     try {
       this.userService.login(userLogin);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 }

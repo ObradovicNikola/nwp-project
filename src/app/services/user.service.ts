@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { MySnackbarComponent } from '../components/common/my-snackbar/my-snackbar.component';
 import { UserLoginInterface } from '../models/dto/UserLoginInterface';
 import { UserRegisterInterface } from '../models/dto/UserRegisterInterface';
 import { TransactionResponseInterface } from '../models/entities/TransactionResponseInterface';
@@ -21,7 +23,11 @@ export class UserService {
   username: string = '';
   usernameChange: Subject<string> = new Subject<string>();
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
     this.isLoggedInChange.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
@@ -67,17 +73,53 @@ export class UserService {
         },
         error: (error) => {
           // Error in service, rethrowing...
+          this.snackBar.openFromComponent(MySnackbarComponent, {
+            data: {
+              message:
+                error &&
+                error.error &&
+                error.error.errors &&
+                error.error.errors[0]
+                  ? error.error.errors[0]
+                  : 'Oops, something went wrong',
+              type: 'is-danger',
+            },
+          });
           throw error;
         },
       });
   }
 
-  register(userRegister: UserRegisterInterface): Observable<any> {
-    return this.http.post(
-      `${this.expensesUrl}/auth/register`,
-      userRegister,
-      this.config
-    );
+  register(userRegister: UserRegisterInterface): void {
+    this.http
+      .post(`${this.expensesUrl}/auth/register`, userRegister, this.config)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/login']);
+          this.snackBar.openFromComponent(MySnackbarComponent, {
+            data: {
+              message: 'You have successfully registered, please login',
+              type: 'is-info',
+            },
+          });
+        },
+        error: (error) => {
+          // Error in service, rethrowing...
+          this.snackBar.openFromComponent(MySnackbarComponent, {
+            data: {
+              message:
+                error &&
+                error.error &&
+                error.error.errors &&
+                error.error.errors[0]
+                  ? error.error.errors[0]
+                  : 'Oops, something went wrong',
+              type: 'is-danger',
+            },
+          });
+          throw error;
+        },
+      });
   }
 
   logout() {
