@@ -3,6 +3,8 @@ import { TransactionResponseInterface } from 'src/app/models/entities/Transactio
 import { IncomesService } from 'src/app/services/incomes.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { TransactionRequestInterface } from 'src/app/models/entities/TransactionRequestInterface';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MySnackbarComponent } from 'src/app/components/common/my-snackbar/my-snackbar.component';
 
 @Component({
   selector: 'app-incomes',
@@ -24,7 +26,10 @@ export class IncomesComponent implements OnInit {
     amount: 0,
   };
 
-  constructor(private incomesService: IncomesService) {}
+  constructor(
+    private incomesService: IncomesService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getIncomes();
@@ -49,6 +54,12 @@ export class IncomesComponent implements OnInit {
   ) => {
     this.incomesService.deleteIncome(income.id).subscribe(() => {
       this.getIncomes();
+      this.snackBar.openFromComponent(MySnackbarComponent, {
+        data: {
+          message: 'Income deleted successfully!',
+          type: 'is-info',
+        },
+      });
     });
   };
 
@@ -71,6 +82,12 @@ export class IncomesComponent implements OnInit {
       next: () => {
         this.getIncomes();
         this.closeDialog();
+        this.snackBar.openFromComponent(MySnackbarComponent, {
+          data: {
+            message: 'Income created successfully!',
+            type: 'is-info',
+          },
+        });
       },
       error: (error) => {
         // TODO: snackbar to show error
@@ -96,6 +113,12 @@ export class IncomesComponent implements OnInit {
         next: () => {
           this.getIncomes();
           this.closeEditDialog();
+          this.snackBar.openFromComponent(MySnackbarComponent, {
+            data: {
+              message: 'Income updated successfully!',
+              type: 'is-info',
+            },
+          });
         },
         error: (error) => {
           // TODO: snackbar to show error

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { MySnackbarComponent } from 'src/app/components/common/my-snackbar/my-snackbar.component';
 import { TransactionRequestInterface } from 'src/app/models/entities/TransactionRequestInterface';
 import { TransactionResponseInterface } from 'src/app/models/entities/TransactionResponseInterface';
 import { ExpensesService } from 'src/app/services/expenses.service';
@@ -24,7 +26,10 @@ export class ExpensesComponent implements OnInit {
     amount: 0,
   };
 
-  constructor(private expensesService: ExpensesService) {}
+  constructor(
+    private expensesService: ExpensesService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getExpenses();
@@ -49,6 +54,12 @@ export class ExpensesComponent implements OnInit {
   ) => {
     this.expensesService.deleteExpense(expense.id).subscribe(() => {
       this.getExpenses();
+      this.snackBar.openFromComponent(MySnackbarComponent, {
+        data: {
+          message: 'Expense deleted successfully!',
+          type: 'is-info',
+        },
+      });
     });
   };
 
@@ -71,6 +82,12 @@ export class ExpensesComponent implements OnInit {
       next: () => {
         this.getExpenses();
         this.closeDialog();
+        this.snackBar.openFromComponent(MySnackbarComponent, {
+          data: {
+            message: 'Expense created successfully!',
+            type: 'is-info',
+          },
+        });
       },
       error: (error) => {
         // TODO: snackbar to show error
@@ -96,6 +113,12 @@ export class ExpensesComponent implements OnInit {
         next: () => {
           this.getExpenses();
           this.closeEditDialog();
+          this.snackBar.openFromComponent(MySnackbarComponent, {
+            data: {
+              message: 'Expense updated successfully!',
+              type: 'is-info',
+            },
+          });
         },
         error: (error) => {
           // TODO: snackbar to show error
